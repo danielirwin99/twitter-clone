@@ -1,16 +1,26 @@
 import { closeSignupModal, openSignupModal } from "@/redux/modalSlice";
 import { Modal } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  updateProfile,
+} from "firebase/auth";
 import { auth } from "@/utils/firebase";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { setUser } from "@/redux/userSlice";
+import { useRouter } from "next/router";
 
 const SingupModal = () => {
+  // Opens the modal
   const isOpen = useSelector((state) => state.modals.signupModalOpen);
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+
+  const router = useRouter()
 
   async function handleSignUp() {
     const userCredentials = await createUserWithEmailAndPassword(
@@ -18,7 +28,41 @@ const SingupModal = () => {
       email,
       password
     );
+
+    // Second parameter is an object of things you want to change
+    await updateProfile(auth.currentUser, {
+      displayName: name,
+      // Picking a random photo of the 6 profile pictures in the assets folder --> Math.ceil rounds it up from a decimal
+      photoURL: `./assets/profilePictures/pfp${Math.ceil(
+        Math.random() * 6
+      )}.png`,
+    });
+
+    router.reload()
   }
+
+  useEffect(() => {
+    // This is a listening that listens to a user being signed up
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (!currentUser) {
+        return;
+      }
+      dispatch(
+        setUser({
+          // This splits the string of the email at the @ --> Makes the first part the username i.e danielirwin@gmail.com --> @danielirwin
+          username: currentUser.email.split("@")[0],
+          name: currentUser.displayName,
+          email: currentUser.email,
+          uid: currentUser.uid,
+          photoUrl: currentUser.photoURL,
+        })
+      );
+      //  handle redux actions
+      console.log(currentUser);
+    });
+    // Turns off the listener --> So our website isnt slowed down
+    return unsubscribe;
+  }, []);
 
   return (
     <>
@@ -46,6 +90,7 @@ const SingupModal = () => {
                 className="h-10 rounded-md bg-transparent border border-gray-700 p-6 my-4"
                 type="text"
                 placeholder="Full Name"
+                onChange={(e) => setName(e.target.value)}
               />
               <input
                 className="h-10 rounded-md bg-transparent border border-gray-700 p-6 my-4"
