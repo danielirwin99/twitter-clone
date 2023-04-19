@@ -3,8 +3,7 @@ import { BadgeCheckIcon } from "@heroicons/react/solid";
 
 const Trending = () => {
   return (
-    <div className="hidden lg:flex flex-col p-3">
-      Trending
+    <div className="hidden lg:flex flex-col p-3 mt-3">
       <div className="flex space-x-3 bg-white bg-opacity-10 w-[300px] h-[50px] p-3 rounded-3xl ">
         <SearchIcon className="w-6 text-gray-600" />
         <input
@@ -40,7 +39,7 @@ const Trending = () => {
           <p className="text-xs text-gray-500">2,530 Tweets</p>
         </div>
       </div>
-      <div className="w-[300px] h-[300px] bg-white bg-opacity-10 rounded-3xl mt-3 overflow-x-hidden scrollBar ">
+      <div className="w-[300px] h-[300px] bg-white bg-opacity-10 rounded-3xl mt-3 overflow-x-hidden scrollBar">
         <h1 className="font-bold text-xl p-3">Who to follow</h1>
 
         <div className="flex justify-between p-3">
