@@ -9,3 +9,7 @@
 .iconsAnimation {
   @apply hover:bg-opacity-10 hover:bg-[#1d9bf0] rounded-full w-9 h-9 flex items-center justify-center cursor-pointer
 }
+
+.scrollBar {
+  @apply !scrollbar-thin !scrollbar-track-inherit scroll-smooth
+}

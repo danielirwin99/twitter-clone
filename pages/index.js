@@ -12,7 +12,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="bg-black min-h-screen text-[#e7e9ea] max-w-[1400px] ml-auto mr-auto flex">
+      <div className="bg-black min-h-screen text-[#e7e9ea] max-w-[1500px] ml-auto mr-auto flex overflow-y-hidden">
         <Sidebar />
         <PostFeed />
         <Trending />
