@@ -1,3 +1,4 @@
+import LoginModal from "./modals/LoginModal";
 import SingupModal from "./modals/SingupModal";
 
 const BottomerBanner = () => {
@@ -10,9 +11,7 @@ const BottomerBanner = () => {
         </span>
       </div>
       <div className="space-x-3">
-        <button className="bg-transparent border border-white text-white w-[160px] rounded-full h-[40px] hover:bg-[#cbd2d7] hover:text-black">
-          Login
-        </button>
+        <LoginModal  />
         <SingupModal />
       </div>
     </div>
