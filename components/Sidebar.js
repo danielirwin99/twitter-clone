@@ -14,6 +14,7 @@ import {
 } from "@heroicons/react/outline";
 import { signOut } from "firebase/auth";
 import Image from "next/image";
+import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 
 const Sidebar = () => {
@@ -36,12 +37,14 @@ const Sidebar = () => {
     <div className="hidden sm:flex flex-col fixed h-full xl:ml-20">
       <nav className="space-y-1.5 relative h-full">
         <div className="py-3 xl:p-3 flex justify-center items-center xl:justify-start">
-          <Image
-            src={"/assets/twitter-logo.png"}
-            width={34}
-            height={34}
-            alt="Twitter Logo"
-          />
+          <Link href={"/"}>
+            <Image
+              src={"/assets/twitter-logo.png"}
+              width={34}
+              height={34}
+              alt="Twitter Logo"
+            />
+          </Link>
         </div>
         <SidebarLink Icon={HomeIcon} text={"Home"} />
         <SidebarLink Icon={HashtagIcon} text={"Explore"} />
