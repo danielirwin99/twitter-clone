@@ -1,4 +1,5 @@
 import { closeLoginModal, openLoginModal } from "@/redux/modalSlice";
+import { auth } from "@/utils/firebase";
 import { Modal } from "@mui/material";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
@@ -6,13 +7,20 @@ import { useDispatch, useSelector } from "react-redux";
 
 const LoginModal = () => {
   const isOpen = useSelector((state) => state.modals.loginModalOpen);
+  // Dispatches an action given
   const dispatch = useDispatch();
   console.log(isOpen);
+  // Our state when the user creates an email
   const [email, setEmail] = useState("");
+  // Same for password
   const [password, setPassword] = useState("");
 
   async function handleSignin() {
     await signInWithEmailAndPassword(auth, email, password);
+  }
+
+  async function handleGuestSignin(email, password) {
+    await signInWithEmailAndPassword(auth, "guest1111@gmail.com", "123456");
   }
 
   return (
@@ -52,7 +60,10 @@ const LoginModal = () => {
                 Sign In
               </button>
               <h1 className="text-center font-bold text-lg my-4">or</h1>
-              <button className="bg-white text-black w-full font-bold text-lg p-2 rounded-lg hover:opacity-80">
+              <button
+                onClick={handleGuestSignin}
+                className="bg-white text-black w-full font-bold text-lg p-2 rounded-lg hover:opacity-80"
+              >
                 Sign in as Guest
               </button>
             </div>

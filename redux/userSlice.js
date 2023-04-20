@@ -24,7 +24,7 @@ const userSlice = createSlice({
     },
 
     // Changes the properties back to null
-    signOutUser: () => {
+    signOutUser: (state) => {
       (state.username = null),
         (state.name = null),
         (state.email = null),

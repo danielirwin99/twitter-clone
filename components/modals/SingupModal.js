@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
 import { auth } from "@/utils/firebase";
@@ -20,7 +21,8 @@ const SingupModal = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
-  const router = useRouter()
+  //
+  const router = useRouter();
 
   async function handleSignUp() {
     const userCredentials = await createUserWithEmailAndPassword(
@@ -38,7 +40,11 @@ const SingupModal = () => {
       )}.png`,
     });
 
-    router.reload()
+    router.reload();
+  }
+
+  async function handleGuestSignin(email, password) {
+    await signInWithEmailAndPassword(auth, "guest1111@gmail.com", "123456");
   }
 
   useEffect(() => {
@@ -80,7 +86,10 @@ const SingupModal = () => {
       >
         <div className="flex flex-col items-center w-[90%] h-fit bg-black text-white md:w-[560px] md:h-[640px] border border-gray-700 rounded-lg ">
           <div className="w-[90%] mt-8 ">
-            <button className="bg-white text-black w-full font-bold text-lg p-2 rounded-lg hover:opacity-80">
+            <button
+              onClick={handleGuestSignin}
+              className="bg-white text-black w-full font-bold text-lg p-2 rounded-lg hover:opacity-80"
+            >
               Sign in as Guest
             </button>
             <h1 className="text-center mt-4 font-bold text-lg">or</h1>

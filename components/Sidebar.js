@@ -1,3 +1,4 @@
+import { closeLoginModal, closeSignupModal } from "@/redux/modalSlice";
 import { signOutUser } from "@/redux/userSlice";
 import { auth } from "@/utils/firebase";
 import {
@@ -21,9 +22,14 @@ const Sidebar = () => {
   const dispatch = useDispatch();
 
   async function handleSignOut() {
-    dispatch(signOutUser);
-
     await signOut(auth);
+
+    // Signs out the user
+    dispatch(signOutUser());
+    // Closes the Signup modal when we sign out
+    dispatch(closeSignupModal());
+    // Closes the Login modal when we sign out
+    dispatch(closeLoginModal());
   }
 
   return (
@@ -57,7 +63,7 @@ const Sidebar = () => {
             alt=""
           />
           <div className="hidden xl:inline w-24">
-            <h1 className="font-bold whitespace-nowrap">{user.username}</h1>
+            <h1 className="font-bold whitespace-nowrap">{user.name}</h1>
             <h1 className="text-gray-500 hidden xl:inline">@{user.username}</h1>
           </div>
           <DotsHorizontalIcon className="h-5 hidden xl:inline-block absolute right-0" />
