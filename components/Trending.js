@@ -99,6 +99,25 @@ const Trending = () => {
             Follow
           </button>
         </div>
+        <div className="flex justify-between p-3">
+          <div className="flex space-x-3">
+            <img
+              className="w-11 h-11 object-cover rounded-full"
+              src="/assets/samwise.jpg"
+              alt=""
+            />
+            <div>
+              <div className="flex space-x-1 items-center relative">
+                <h1 className="font-bold">Samwise Gamgee</h1>
+                <BadgeCheckIcon className="w-[18px] absolute right-2 text-blue-400" />
+              </div>
+              <h1 className="text-[12px] text-gray-500 mt-0.5">@samwise</h1>
+            </div>
+          </div>
+          <button className="bg-white text-black text-sm w-20 h-8 rounded-3xl font-bold">
+            Follow
+          </button>
+        </div>
       </div>
     </div>
   );
