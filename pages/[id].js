@@ -6,7 +6,7 @@ import { db } from "@/utils/firebase";
 import { ArrowLeftIcon } from "@heroicons/react/outline";
 import { doc, getDoc } from "firebase/firestore";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import Moment from "react-moment";
 import { useSelector } from "react-redux";
 
@@ -61,14 +61,20 @@ const commentsPage = ({ tweetData }) => {
                   <Moment fromNow>{JSON.parse(tweetData.timestamp)}</Moment>
                 </div>
                 <span className="text-2xl">{tweetData.text}</span>
+                {tweetData.image && (
+                  <img
+                    className="object-cover border border-gray-700 rounded-md mt-3 max-h-80"
+                    src={tweetData.image}
+                  />
+                )}
               </div>
             </div>
           </div>
           <div className="flex justify-between items-center p-3 border-b border-gray-500">
             <div className="flex justify-center items-center p-1 space-x-3">
               <img
-                className="w-12 h-12 rounded-full object-cover"
-                src={user.photoUrl}
+                className="w-11 h-11 rounded-full object-cover"
+                src={tweetData.photoUrl}
                 alt=""
               />
               <h1 className="text-2xl text-gray-500">Tweet your reply</h1>
@@ -95,12 +101,6 @@ const commentsPage = ({ tweetData }) => {
                     <div className="w-1 h-1 bg-gray-500 rounded-full"></div>
                   </div>
                   <span>{comment.comment}</span>
-                  {tweetData.image && (
-                    <img
-                      className="object-cover rounded-md max-h-80 mt-3 border border-gray-700"
-                      src={tweetData.image}
-                    />
-                  )}
                 </div>
               </div>
             </div>

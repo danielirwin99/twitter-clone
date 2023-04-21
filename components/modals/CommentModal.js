@@ -45,7 +45,7 @@ const CommentModal = () => {
     });
 
     // Closes the modal after you comment your tweet on a post
-    dispatch(closeCommentModal())
+    dispatch(closeCommentModal());
     // Pushes us to the comment page of that comment.id
     router.push("/" + tweetDetails.id);
   }
@@ -57,7 +57,7 @@ const CommentModal = () => {
         open={isOpen}
         onClose={() => dispatch(closeCommentModal())}
       >
-        <div className=" relative bg-black rounded-lg w-full h-full sm:w-[600px] sm:h-[386px] border border-gray-500 text-white sm:p-10 p-4">
+        <div className=" relative bg-black rounded-lg w-full h-full sm:w-[600px] sm:h-[550px] border border-gray-500 text-white sm:p-10 p-4">
           <div className="absolute w-[2px] h-[91px] bg-gray-500 ml-6 mt-12"></div>
           <div
             onClick={() => dispatch(closeCommentModal())}
@@ -117,7 +117,7 @@ const CommentModal = () => {
                     </div>
                   </div>
                   <button
-                    onClick={() => sendComment}
+                    onClick={sendComment}
                     // If there is no coment we want to disable the button
                     disabled={!comment}
                     className="bg-[#1d9bf0] rounded-full px-4 py-1.5 text-center font-bold disabled:opacity-50"

@@ -74,7 +74,7 @@ const Tweet = ({ data, id }) => {
 
     const unsubscribe = onSnapshot(doc(db, "posts", id), (doc) => {
       setLikes(doc.data()?.likes);
-      setComments(doc.data()?.comments);
+      setComments(doc.data().comments);
     });
     return unsubscribe;
   }, []);

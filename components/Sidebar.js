@@ -65,7 +65,7 @@ const Sidebar = () => {
             src={user.photoUrl || "/assets/kylie.png"}
             alt=""
           />
-          <div className="hidden xl:inline w-24">
+          <div className="hidden xl:inline w-full">
             <h1 className="font-bold whitespace-nowrap">{user.name}</h1>
             <h1 className="text-gray-500 hidden xl:inline">@{user.username}</h1>
           </div>
