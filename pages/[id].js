@@ -3,13 +3,7 @@ import Sidebar from "@/components/Sidebar";
 import Trending from "@/components/Trending";
 import Tweet from "@/components/Tweet";
 import { db } from "@/utils/firebase";
-import {
-  ArrowLeftIcon,
-  ChartBarIcon,
-  ChatIcon,
-  HeartIcon,
-  UploadIcon,
-} from "@heroicons/react/outline";
+import { ArrowLeftIcon } from "@heroicons/react/outline";
 import { doc, getDoc } from "firebase/firestore";
 import Link from "next/link";
 import React from "react";
@@ -22,12 +16,13 @@ export async function getServerSideProps(context) {
   const docSnap = await getDoc(docRef);
   const data = docSnap.data();
   const formattedData = {
-    username: data.username,
-    name: data.name,
-    photoUrl: data.photoUrl,
-    text: data.tweet,
-    comments: data.comments || null,
-    timestamp: JSON.stringify(data.timestamp.toDate()),
+    username: data?.username,
+    name: data?.name,
+    photoUrl: data?.photoUrl,
+    text: data?.tweet,
+    comments: data?.comments || null,
+    timestamp: JSON.stringify(data?.timestamp.toDate()),
+    image: data?.image || null,
   };
   return {
     props: {
@@ -100,6 +95,12 @@ const commentsPage = ({ tweetData }) => {
                     <div className="w-1 h-1 bg-gray-500 rounded-full"></div>
                   </div>
                   <span>{comment.comment}</span>
+                  {tweetData.image && (
+                    <img
+                      className="object-cover rounded-md max-h-80 mt-3 border border-gray-700"
+                      src={tweetData.image}
+                    />
+                  )}
                 </div>
               </div>
             </div>
