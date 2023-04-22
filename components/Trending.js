@@ -40,7 +40,7 @@ const Trending = () => {
         </div>
       </div>
       <div className="w-[300px] h-[300px] bg-white bg-opacity-10 rounded-3xl mt-3 overflow-x-hidden scrollBar">
-        <h1 className="font-bold text-xl p-3">Who to follow</h1>
+        <h1 className="font-bold text-xl p-3 pl-4">Who to follow</h1>
 
         <div className="flex justify-between p-3">
           <div className="flex space-x-3">
