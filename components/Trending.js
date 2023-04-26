@@ -13,7 +13,7 @@ const Trending = () => {
         />
       </div>
       <div className="w-[300px] h-[500px] bg-white bg-opacity-10 rounded-3xl mt-3">
-        <h1 className="font-bold text-xl p-3">Whats happening</h1>
+        <h1 className="font-bold text-xl p-3 pl-4">Whats happening</h1>
         <div className="relative p-3">
           <DotsHorizontalIcon className="w-5 text-gray-600 absolute right-4 cursor-pointer" />
           <p className="text-xs text-gray-500">Trending in Australia</p>
